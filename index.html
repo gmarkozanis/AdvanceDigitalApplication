@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Προηγμένες Ψηφιακές Εφαρμογές - Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="glass-container">
+        <aside class="sidebar">
+            <div class="logo">ΠΡΟΗΓΜΕΝΕΣ <span>ΨΗΦΙΑΚΕΣ ΕΦΑΡΜΟΓΕΣ</span></div>
+            <nav>
+                <button onclick="showSection('instructions')" class="nav-btn active"><i class="fas fa-info-circle"></i> Οδηγίες & Tips</button>
+                <button onclick="showSection('sim')" class="nav-btn"><i class="fas fa-comments"></i> AI Assistant</button>
+                <button onclick="showSection('cases')" class="nav-btn"><i class="fas fa-hand-pointer"></i> Case Studies</button>
+                <button onclick="showSection('quiz')" class="nav-btn"><i class="fas fa-tasks"></i> Quiz Γνώσεων</button>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section id="instructions-section" class="app-section active">
+                <div class="section-header"><h2>Οδηγίες Χρήσης</h2></div>
+                <div class="info-grid">
+                    <div class="info-card highlight">
+                        <h3><i class="fas fa-terminal"></i>Πώς να μιλήσεις στο AI Bot</h3>
+                        <p>Το bot καταλαβαίνει λέξεις-κλειδιά. Δοκίμασε:</p>
+                        <ul>
+                            <li><strong>Τι είναι το AI</strong></li>
+                            <li><strong>Πού βοηθάει το VR</strong></li>
+                            <li><strong>Τι σημαίνει UX</strong></li>
+                            <li><strong>Πες μου για το AR</strong></li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fas fa-mouse-pointer"></i> Case Studies</h3>
+                        <p>Σύρε την τεχνολογία στο σωστό σενάριο. Αν είναι λάθος, το πλαίσιο θα γίνει <strong>κόκκινο</strong>!</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sim-section" class="app-section">
+                <div class="section-header"><h2>AI Assistant</h2></div>
+                <div class="chat-container">
+                    <div id="chat-messages" class="messages-area">
+                        <div class="msg bot"><p>Γεια! Είμαι ο ψηφιακός σου βοηθός. Μπορείς να με ρωτήσεις για AI, VR, AR ή UX Design.</p></div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="chat-input" placeholder="Γράψε π.χ. 'Τι είναι το VR;'...">
+                        <button onclick="handleChat()"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cases-section" class="app-section">
+                <div class="section-header"><h2>Case Studies (Drag & Drop)</h2></div>
+                <div class="case-description" style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px; border-left: 4px solid var(--primary);">
+        <p><strong>Εκφώνηση:</strong> Παρακάτω θα βρεις τέσσερα πραγματικά σενάρια εφαρμογής (Real-world Scenarios). Σύρε κάθε <strong>Τεχνολογία</strong> στο σωστό <strong>Πρακτικό Παράδειγμα</strong> για να δεις πώς οι Προηγμένες Ψηφιακές Εφαρμογές επιλύουν καθημερινά προβλήματα.</p>
+    </div>
+                <div class="drag-container">
+                    <div class="tech-items" id="tech-list">
+                        <div class="draggable" draggable="true" id="tech-vr">VR</div>
+                        <div class="draggable" draggable="true" id="tech-ai">AI</div>
+                        <div class="draggable" draggable="true" id="tech-ar">AR</div>
+                        <div class="draggable" draggable="true" id="tech-ux">UX</div>
+                    </div>
+                    <div class="drop-targets">
+                        <div class="drop-zone" data-accept="tech-vr" data-text='"Θέλω να περιηγηθώ εικονικά στο ξενοδοχείο."'>
+                            <p>"Θέλω να περιηγηθώ εικονικά στο ξενοδοχείο."</p>
+                        </div>
+                        <div class="drop-zone" data-accept="tech-ai" data-text='"Θέλω ένα σύστημα που να μου προτείνει προορισμούς."'>
+                            <p>"Θέλω ένα σύστημα που να μου προτείνει προορισμούς."</p>
+                        </div>
+                        <div class="drop-zone" data-accept="tech-ar" data-text='"Θέλω να βλέπω ψηφιακά μενού πάνω στο τραπέζι."'>
+                            <p>"Θέλω να βλέπω ψηφιακά μενού πάνω στο τραπέζι."</p>
+                        </div>
+                        <div class="drop-zone" data-accept="tech-ux" data-text='"Θέλω η εφαρμογή μου να είναι εύχρηστη για όλους."'>
+                            <p>"Θέλω η εφαρμογή μου να είναι εύχρηστη για όλους."</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="reset-btn" onclick="resetCases()" style="margin-top:20px;">Επαναφορά Case Studies</button>
+            </section>
+
+            <section id="quiz-section" class="app-section">
+                <div class="section-header">
+                    <h2>Quiz Γνώσεων</h2>
+                    <div class="score-box">
+                        <span id="score-text">Σωστά: 0 / 8</span>
+                        <div class="progress-bar"><div id="progress-fill"></div></div>
+                    </div>
+                </div>
+
+                <div id="quiz-container" class="quiz-scroll">
+                    <div class="q-card" data-ans="a">
+                        <p>1. Τι είναι η "Επαυξημένη Πραγματικότητα" (AR);</p>
+                        <div class="options">
+                            <button onclick="pick(this, 'a')">Ψηφιακά στοιχεία πάνω στον φυσικό κόσμο</button>
+                            <button onclick="pick(this, 'b')">Πλήρης απομόνωση σε ψηφιακό κόσμο</button>
+                        </div>
+                    </div>
+
+                    <div class="q-card" data-ans="b">
+                        <p>2. Τι ορίζει ο Νόμος του Hick;</p>
+                        <div class="options">
+                            <button onclick="pick(this, 'a')">Περισσότερες επιλογές = Ταχύτερη απόφαση</button>
+                            <button onclick="pick(this, 'b')">Περισσότερες επιλογές = Πιο αργή απόφαση</button>
+                        </div>
+                    </div>
+
+                    <div class="q-card" data-ans="a">
+                        <p>3. Τι σημαίνει "Immersion" (Εμβύθιση);</p>
+                        <div class="options">
+                            <button onclick="pick(this, 'a')">Η αίσθηση ότι βρίσκεσαι μέσα στο περιβάλλον</button>
+                            <button onclick="pick(this, 'b')">Η ταχύτητα του ίντερνετ</button>
+                        </div>
+                    </div>
+
+                    <div class="q-card" data-ans="b">
+                        <p>4. Ποιος είναι ο στόχος του UX Design;</p>
+                        <div class="options">
+                            <button onclick="pick(this, 'a')">Μόνο η ωραία εμφάνιση</button>
+                            <button onclick="pick(this, 'b')">Η εύκολη και ουσιαστική εμπειρία του χρήστη</button>
+                        </div>
+                    </div>
+
+                    <div class="q-card" data-ans="a">
+                        <p>5. Τι κάνει ένα Recommendation System (Σύστημα Συστάσεων);</p>
+                        <div class="options">
+                            <button onclick="pick(this, 'a')">Προτείνει περιεχόμενο βάσει ιστορικού</button>
+                            <button onclick="pick(this, 'b')">Κλειδώνει τον λογαριασμό του χρήστη</button>
+                        </div>
+                    </div>
+
+                    <div class="q-card" data-ans="a">
+                        <p>6. Τι είναι η "Προσβασιμότητα" (Accessibility);</p>
+                        <div class="options">
+                            <button onclick="pick(this, 'a')">Σχεδιασμός για όλους, συμπεριλαμβανομένων ΑμεΑ</button>
+                            <button onclick="pick(this, 'b')">Πρόσβαση μόνο με κωδικό</button>
+                        </div>
+                    </div>
+
+                    <div class="q-card" data-ans="b">
+                        <p>7. Τι είναι το Πρωτότυπο (Prototype);</p>
+                        <div class="options">
+                            <button onclick="pick(this, 'a')">Το τελικό έτοιμο προϊόν</button>
+                            <button onclick="pick(this, 'b')">Ένα πρώιμο δείγμα για δοκιμή ιδεών</button>
+                        </div>
+                    </div>
+
+                    <div class="q-card" data-ans="a">
+                        <p>8. Τι σημαίνει Latency στο VR;</p>
+                        <div class="options">
+                            <button onclick="pick(this, 'a')">Καθυστέρηση στην απόκριση που προκαλεί ναυτία</button>
+                            <button onclick="pick(this, 'b')">Η υψηλή ανάλυση της εικόνας</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-footer" style="margin-top: 20px;">
+                    <button class="reset-btn" onclick="resetQuiz()">Επαναφορά Quiz</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id + '-section').classList.add('active');
+            if(event) event.currentTarget.classList.add('active');
+        }
+
+        function handleChat() {
+            const inp = document.getElementById('chat-input');
+            const area = document.getElementById('chat-messages');
+            const val = inp.value.toLowerCase();
+            if(!val) return;
+            area.innerHTML += `<div class="msg user"><p>${inp.value}</p></div>`;
+            
+            let reply = "Δοκίμασε να ρωτήσεις για AI, VR, AR ή UX.";
+            if(val.includes("ai")) reply = "Το ΑΙ είναι η τεχνολογία που αποσκοπεί στη δημιουργία μηχανών ικανών να μιμούνται ή να αναπαράγουν τις διαδικασίες της ανθρώπινης νοημοσύνης.";
+            else if(val.includes("vr")) reply = "Εικονική Πραγματικότητα (VR) λειτουργεί ως ένα ισχυρό εργαλείο που αναδιαμορφώνει την εμπειρία του χρήστη, δημιουργώντας ένα πλήρως ψηφιακό περιβάλλον.";
+            else if(val.includes("ar")) reply = "Το AR είναι μια τεχνολογία που συνδυάζει τον πραγματικό κόσμο με ψηφιακά στοιχεία, εμπλουτίζοντας την αντίληψή μας για το περιβάλλον.";
+            else if(val.includes("ux")) reply = "Το UX είναι η διαδικασία σχεδιασμού προϊόντων που προσφέρουν ουσιαστικές και σχετικές εμπειρίες στους χρήστες.";
+
+            setTimeout(() => {
+                area.innerHTML += `<div class="msg bot"><p>${reply}</p></div>`;
+                area.scrollTop = area.scrollHeight;
+            }, 500);
+            inp.value = "";
+        }
+
+        // --- Drag & Drop Logic ---
+        const draggables = document.querySelectorAll('.draggable');
+        draggables.forEach(drag => {
+            drag.addEventListener('dragstart', () => drag.classList.add('dragging'));
+            drag.addEventListener('dragend', () => drag.classList.remove('dragging'));
+        });
+
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            zone.addEventListener('dragover', e => e.preventDefault());
+            zone.addEventListener('drop', e => {
+                e.preventDefault();
+                const draggedElement = document.querySelector('.dragging');
+                if (draggedElement.id === zone.getAttribute('data-accept')) {
+                    zone.classList.remove('wrong-drop');
+                    zone.classList.add('correct-drop');
+                    zone.innerHTML = "<strong>Σωστό!</strong>";
+                    draggedElement.style.display = 'none';
+                } else {
+                    zone.classList.add('wrong-drop');
+                    setTimeout(() => zone.classList.remove('wrong-drop'), 800);
+                }
+            });
+        });
+
+        function resetCases() {
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.classList.remove('correct-drop', 'wrong-drop');
+                zone.innerHTML = `<p>${zone.getAttribute('data-text')}</p>`;
+            });
+            document.querySelectorAll('.draggable').forEach(d => d.style.display = 'block');
+        }
+
+        // --- Quiz Logic ---
+        let score = 0; let answered = 0;
+        function pick(btn, val) {
+            const card = btn.closest('.q-card');
+            if(card.classList.contains('locked')) return;
+            if(val === card.getAttribute('data-ans')) {
+                btn.style.background = "#22c55e";
+                score++;
+            } else {
+                btn.style.background = "#ef4444";
+            }
+            card.classList.add('locked');
+            answered++;
+            const percent = (answered / 8) * 100;
+            document.getElementById('progress-fill').style.width = percent + "%";
+            document.getElementById('score-text').innerText = `Σωστά: ${score} / 8`;
+        }
+
+        function resetQuiz() {
+            score = 0; answered = 0;
+            document.getElementById('progress-fill').style.width = "0%";
+            document.getElementById('score-text').innerText = `Σωστά: 0 / 8`;
+            document.querySelectorAll('.q-card').forEach(c => {
+                c.classList.remove('locked');
+                c.querySelectorAll('button').forEach(b => b.style.background = "");
+            });
+        }
+    </script>
+</body>
+</html>
